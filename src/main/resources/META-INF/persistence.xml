@@ -11,7 +11,7 @@ https://jakarta.ee/xml/ns/persistence ">
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/accountapp"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="AlinaB-952H"/>
+            <property name="jakarta.persistence.jdbc.password" value="Bburns08121994."/>
 
             <property name="jakarta.persistence.schema-generation.database.action"
                       value="drop-and-create"/> <!-- "create" creates and updates the tables, "update" only updates the tables, "drop-and-create" drops and then creates and updates the tables -->

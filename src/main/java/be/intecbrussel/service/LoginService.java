@@ -5,6 +5,7 @@ import be.intecbrussel.model.Account;
 import be.intecbrussel.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public class LoginService {
     private UserService userService = new UserService();
@@ -19,17 +20,16 @@ public class LoginService {
         return true;
     }
 
-    public User login(String email, String passw) {
-        User user = userService.getUser(email);
+    public Optional <User> login(String email, String passw) {
 
-        //if (user.isPresent()&&user.get().getAccount().getPassw().equals(passw)) {
-            //return user;
-        //}
-
-        return null;
+        Optional<User> user = userService.getUser(email);
+        if (user.isPresent()&&user.get().getAccount().getPassw().equals(passw)) {
+            return user;
+        }
+       return Optional.empty();
     }
 
     public void registerManyUsers(List<User> userList) {
-        //userService.createManyUsers(userList);
+        userService.createManyUsers(userList);
     }
 }

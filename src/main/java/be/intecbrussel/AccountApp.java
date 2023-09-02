@@ -2,38 +2,53 @@ package be.intecbrussel;
 
 import be.intecbrussel.model.Account;
 import be.intecbrussel.model.User;
+import be.intecbrussel.repository.AccountRepository;
+import be.intecbrussel.repository.UserRepository;
+import be.intecbrussel.service.AccountService;
 import be.intecbrussel.service.LoginService;
+import be.intecbrussel.service.UserService;
+import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class AccountApp {
     public static void main(String[] args) {
+        UserService userService = new UserService();
+
+        Account account = new Account("p", "q");
+        User user = new User("d", "d", account);
+
+        //ADD USER TO DB
+        userService.createUser(user);
+
+        //GET USER
+        userService.getUser("p");
+
+        //UPDATE USER
+        user.setFname("alina");
+        userService.updateUser(user);
+        System.out.println("UPDATE USER`S FNAME: "+ user.getFname());
+
+        //DELETE USER=?????????????????
+        //userService.deleteUser(user);
 
         System.out.println("Hello visitor");
-        System.out.println(" 1. Register\n 2. Login\n 3. Add multiple Users");
+        System.out.println(" 1. Register\n 2. Login\n 3. Add multiple Users -IT DOES`T WORK");
 
         Scanner scanner = new Scanner(System.in);
 
         int userChoice = scanner.nextInt();
 
         switch (userChoice) {
-            case 1:
-                register();
-                break;
-
-            case 2:
-                login();
-                break;
-
-            case 3:
-                batchInsert();
-                break;
-
-            default:
-                System.out.println("Wrong input");
+            case 1 -> register();
+            case 2 -> login();
+            case 3 -> batchInsert();
+            default -> System.out.println("Wrong input");
         }
+
     }
 
     private static void batchInsert() {
@@ -96,13 +111,13 @@ public class AccountApp {
 
         LoginService loginService = new LoginService();
 
-        User userSuccessLogin = loginService.login(email, passw);
+        Optional<User> userSuccessLogin = loginService.login(email, passw);
 
-        //if (userSuccessLogin.isPresent()) {
-            //System.out.println(userSuccessLogin.get());
-            //System.out.println("Successfully logged in");
-        //} else {
-            //System.out.println("Email or password don't match");
-        //}
+        if (userSuccessLogin.isPresent()) {
+            System.out.println(userSuccessLogin.get());
+            System.out.println("Successfully logged in");
+        } else {
+            System.out.println("Email or password don't match");
+        }
     }
 }

@@ -1,15 +1,26 @@
 package be.intecbrussel.model;
 
 import be.intecbrussel.util.IdGenerator;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.util.Optional;
 
+@Entity
 public class User {
+
     private long id;
     private String fname;
     private String lname;
-    private Optional <Account> optionalAccount;
+
+    @Id
+    @OneToOne
     private Account account;
+
+    protected User(){
+
+    }
 
     public User(long id, String fname, String lname, Account account) {
         this.id = id;
@@ -34,20 +45,20 @@ public class User {
         return fname;
     }
 
-    //public void setFname(String fname) {
-    //this.fname = fname;
-    // }
+    public void setFname(String fname) {
+    this.fname = fname;
+    }
 
     public String getLname() {
         return lname;
     }
 
-    //public void setLname(String lname) {
-    //this.lname = lname;
-    //}
+    public void setLname(String lname) {
+    this.lname = lname;
+    }
 
     public Account getAccount() {
-        return optionalAccount.get();
+        return account;
     }
 
     @Override
@@ -56,7 +67,6 @@ public class User {
                 "id=" + id +
                 ", fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
-                ", optionalAccount=" + optionalAccount +
                 ", account=" + account +
                 '}';
     }

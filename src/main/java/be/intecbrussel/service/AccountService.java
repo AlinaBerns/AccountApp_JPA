@@ -1,8 +1,11 @@
 package be.intecbrussel.service;
 
+import be.intecbrussel.config.EMFProvider;
 import be.intecbrussel.model.Account;
 import be.intecbrussel.repository.AccountRepository;
+import jakarta.persistence.EntityManager;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AccountService {
@@ -11,12 +14,22 @@ public class AccountService {
         return accountRepository.createAccount(account);
     }
 
-    public Account getAccount(String email) {
-        return accountRepository.getAccount(email);
+    public Optional<Account> getAccount(String e) {
+        return accountRepository.getAccount(e);
     }
 
-    public void createManyAccounts() {
-        //accountRepository.createManyAccounts(accountList);
+    public boolean deleteAccount(String e){
+        accountRepository.deleteAccount(e);
+        return true;
+    }
+
+    public boolean updateAccount(Account account){
+        accountRepository.updateAccount(account);
+        return true;
+    }
+
+    public void createManyAccounts(List<Account> accountList) {
+        accountRepository.createManyAccounts(accountList);
     }
 
 }

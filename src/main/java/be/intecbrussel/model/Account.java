@@ -1,11 +1,21 @@
 package be.intecbrussel.model;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.util.Objects;
 
+@Entity
 public class Account {
 
-    private final String email;
+    @Id
+    private String email;
     private String passw;
+
+    protected Account(){
+
+    }
 
     public Account(String email, String passw) {
         this.email = email;
