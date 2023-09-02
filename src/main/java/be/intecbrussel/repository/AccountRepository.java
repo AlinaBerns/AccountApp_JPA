@@ -60,6 +60,16 @@ public class AccountRepository {
         em.close();
     }
 
+    public void changePassword(Account account, String newPassword) {
+        EntityManager entityManager = EMFProvider.getEMF().createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.merge(account);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        System.out.println("NEW PASSWORD: " + account.getPassw());
+    }
+
     public void createManyAccounts (List<Account> accountList){
     }
 }

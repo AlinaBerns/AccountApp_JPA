@@ -28,6 +28,11 @@ public class AccountService {
         return true;
     }
 
+    public boolean changePassword(Account account, String newPassword) {
+        accountRepository.changePassword(account, newPassword);
+        return true;
+    }
+
     public void createManyAccounts(List<Account> accountList) {
         accountRepository.createManyAccounts(accountList);
     }

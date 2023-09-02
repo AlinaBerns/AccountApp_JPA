@@ -1,5 +1,6 @@
 package be.intecbrussel;
 
+import be.intecbrussel.config.EMFProvider;
 import be.intecbrussel.model.Account;
 import be.intecbrussel.model.User;
 import be.intecbrussel.repository.AccountRepository;
@@ -18,20 +19,20 @@ public class AccountApp {
     public static void main(String[] args) {
         UserService userService = new UserService();
 
-        Account account = new Account("p", "q");
+        Account account = new Account("bns", "q");
         User user = new User("d", "d", account);
 
         //ADD USER TO DB
         userService.createUser(user);
 
         //GET USER
-        userService.getUser("p");
+        userService.getUser("bns");
 
         //UPDATE USER
         user.setFname("alina");
         userService.updateUser(user);
         System.out.println("UPDATE USER`S FNAME: "+ user.getFname());
-
+        
         //DELETE USER=?????????????????
         //userService.deleteUser(user);
 
